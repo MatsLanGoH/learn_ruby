@@ -15,6 +15,20 @@ class Timer
         minute_digits = "00"
         second_digits = "00"
 
+        if @seconds >= 3600
+            hours = @seconds / 3600
+            hour_digits = padded(hours)
+            @seconds %= 3600
+        end
+
+        if @seconds >=60 
+            minutes = @seconds / 60
+            minute_digits = padded(minutes)
+            @seconds %= 60
+        end
+
+        second_digits = padded(@seconds)
+
         return hour_digits + ":" + minute_digits + ":" + second_digits
     end
 
