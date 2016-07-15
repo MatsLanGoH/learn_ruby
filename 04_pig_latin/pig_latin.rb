@@ -17,12 +17,21 @@ def translate_word(word)
 end
 
 def translate(sentence)
-    arr = []
+    arr = [] 
     sentence.split.each do |n|
+        p = ""
+    
+        # Check for punctuation marks
+        if n[-1] =~ /[.,?!]/
+            p = n[-1]
+            n = n[0..-2]
+        end
+
+        # See if word needs to be capitalized
         if n[0] == n[0].upcase 
-            arr << translate_word(n.downcase).capitalize
+            arr << translate_word(n.downcase).capitalize + p
         else
-            arr << translate_word(n)
+            arr << translate_word(n) + p
         end
     end
     return arr.join(" ")
